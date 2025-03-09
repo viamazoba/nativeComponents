@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors } from '../../../config/theme/theme';
 import { useRef } from 'react';
 
@@ -8,6 +8,7 @@ import { useRef } from 'react';
 export const Animation101Screen = () => {
 
     const animatedOpacity = useRef(new Animated.Value(0)).current;
+    const animatedTop = useRef(new Animated.Value(-280)).current;
 
     const fadeIn = () => {
         Animated.timing(animatedOpacity, {
@@ -15,6 +16,12 @@ export const Animation101Screen = () => {
             duration: 300,
             useNativeDriver: true,
         }).start(() => console.log('Animated ended')); // Puede generar otra acción en este callback
+        Animated.timing(animatedTop, {
+            toValue: 0,
+            duration: 700,
+            easing: Easing.bounce,
+            useNativeDriver: true,
+        }).start(() => console.log('Animated ended'));
     };
 
     const fadeOut = () => {
@@ -22,7 +29,8 @@ export const Animation101Screen = () => {
             toValue: 0,
             duration: 300,
             useNativeDriver: true,
-        }).start(() => console.log('Animated ended'));
+        }).start(() => animatedTop.resetAnimation());
+
     };
 
     return (
@@ -31,6 +39,7 @@ export const Animation101Screen = () => {
                 style={{
                     ...styles.purpleBox,
                     opacity: animatedOpacity,
+                    transform: [{ translateY: animatedTop }],
                 }}
             />
 
