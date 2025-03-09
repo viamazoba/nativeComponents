@@ -1,9 +1,10 @@
-import { ScrollView, Text, View } from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import { ScrollView, View } from 'react-native';
 import { globalStyles } from '../../../config/theme/theme';
 import { Title } from '../../components/ui/Title';
+import { IMenuItem, MenuItem } from '../../components/ui/MenuItem';
 
-export const menuItems = [
-    // 01-animationMenuItems
+const animationMenuItems: IMenuItem[] = [
     {
         name: 'Animation 101',
         icon: 'cube-outline',
@@ -14,8 +15,9 @@ export const menuItems = [
         icon: 'albums-outline',
         component: 'Animation102Screen',
     },
+];
 
-    // 02-menuItems
+export const menuItems: IMenuItem[] = [
     {
         name: 'Pull to refresh',
         icon: 'refresh-outline',
@@ -46,8 +48,9 @@ export const menuItems = [
         icon: 'flask-outline',
         component: 'ChangeThemeScreen',
     },
+];
 
-    // 03- uiMenuItems
+const uiMenuItems: IMenuItem[] = [
     {
         name: 'Switches',
         icon: 'toggle-outline',
@@ -75,8 +78,39 @@ export const HomeScreen = () => {
                     <Title text="Opciones del menú" safe />
 
                     {
-                        menuItems.map(item => (
-                            <Text key={item.name}>{item.name}</Text>
+                        animationMenuItems.map((item, index) => (
+                            <MenuItem
+                                key={item.component}
+                                {...item}
+                                isFirst={index === 0}
+                                isLast={index === animationMenuItems.length - 1}
+                            />
+                        ))
+                    }
+
+                    <View style={{ marginTop: 30 }} />
+
+                    {
+                        menuItems.map((item, index) => (
+                            <MenuItem
+                                key={item.component}
+                                {...item}
+                                isFirst={index === 0}
+                                isLast={index === menuItems.length - 1}
+                            />
+                        ))
+                    }
+
+                    <View style={{ marginTop: 30 }} />
+
+                    {
+                        uiMenuItems.map((item, index) => (
+                            <MenuItem
+                                key={item.component}
+                                {...item}
+                                isFirst={index === 0}
+                                isLast={index === uiMenuItems.length - 1}
+                            />
                         ))
                     }
                 </ScrollView>
