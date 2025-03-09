@@ -1,37 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors } from '../../../config/theme/theme';
-import { useRef } from 'react';
+import { useAnimation } from '../../hooks/useAnimation';
 
 
 
 export const Animation101Screen = () => {
 
-    const animatedOpacity = useRef(new Animated.Value(0)).current;
-    const animatedTop = useRef(new Animated.Value(-280)).current;
-
-    const fadeIn = () => {
-        Animated.timing(animatedOpacity, {
-            toValue: 1,
-            duration: 300,
-            useNativeDriver: true,
-        }).start(() => console.log('Animated ended')); // Puede generar otra acción en este callback
-        Animated.timing(animatedTop, {
-            toValue: 0,
-            duration: 700,
-            easing: Easing.bounce,
-            useNativeDriver: true,
-        }).start(() => console.log('Animated ended'));
-    };
-
-    const fadeOut = () => {
-        Animated.timing(animatedOpacity, {
-            toValue: 0,
-            duration: 300,
-            useNativeDriver: true,
-        }).start(() => animatedTop.resetAnimation());
-
-    };
+    const { fadeIn, fadeOut, startMovingTopPosition, animatedOpacity, animatedTop } = useAnimation();
 
     return (
         <View style={styles.container}>
@@ -44,14 +20,21 @@ export const Animation101Screen = () => {
             />
 
             <Pressable
-                onPress={fadeIn}
+                onPress={() => {
+                    fadeIn({});
+                    startMovingTopPosition({
+                        initialPosition: -280,
+                        easing: Easing.bounce,
+                        duration: 700,
+                    });
+                }}
                 style={{ marginTop: 10 }}
             >
                 <Text>FadeIn</Text>
             </Pressable>
 
             <Pressable
-                onPress={fadeOut}
+                onPress={() => fadeOut({})}
                 style={{ marginTop: 10 }}
             >
                 <Text>FadeOut</Text>
