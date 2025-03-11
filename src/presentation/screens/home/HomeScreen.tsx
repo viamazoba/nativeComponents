@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import { ScrollView, View } from 'react-native';
 import { globalStyles } from '../../../config/theme/theme';
 import { Title } from '../../components/ui/Title';
