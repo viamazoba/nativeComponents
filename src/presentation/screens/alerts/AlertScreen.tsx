@@ -3,6 +3,7 @@ import { CustomView } from '../../components/ui/CustomView';
 import { Title } from '../../components/ui/Title';
 import { globalStyles } from '../../../config/theme/theme';
 import { Button } from '../../components/ui/Button';
+import { showPrompt } from '../../../config/adapters/prompt.adapter';
 
 
 export const AlertScreen = () => {
@@ -38,16 +39,27 @@ export const AlertScreen = () => {
             }
         );
 
-    const showPrompt = () => {
+    const onShowPrompt = () => {
 
-        Alert.prompt(
+        showPrompt({
+            title: 'Este es el texto del prompt',
+            message: 'Mensaje del propmt',
+            buttons: [{
+                text: 'Ok',
+                style: 'default',
+                onPress: () => console.log('Ok!'),
+            }],
+        });
+
+        // Este es el código nativo
+        /* Alert.prompt(
             '¿Cuál es tu correo electrónico?',
             'Lorem ipsum',
             (valor: string) => console.log({ valor }),
             'secure-text',
             'Soy el valor por defecto',
             'number-pad'
-        );
+        ); */
     };
 
     return (
@@ -70,7 +82,7 @@ export const AlertScreen = () => {
 
             <Button
                 text="Prompt - Input"
-                onPress={showPrompt}
+                onPress={onShowPrompt}
             />
         </CustomView>
     );
