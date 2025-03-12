@@ -38,6 +38,18 @@ export const AlertScreen = () => {
             }
         );
 
+    const showPrompt = () => {
+
+        Alert.prompt(
+            '¿Cuál es tu correo electrónico?',
+            'Lorem ipsum',
+            (valor: string) => console.log({ valor }),
+            'secure-text',
+            'Soy el valor por defecto',
+            'number-pad'
+        );
+    };
+
     return (
         <CustomView style={globalStyles.globalMargin}>
             <Title text="Alertas" safe />
@@ -58,7 +70,7 @@ export const AlertScreen = () => {
 
             <Button
                 text="Prompt - Input"
-                onPress={() => { }}
+                onPress={showPrompt}
             />
         </CustomView>
     );
