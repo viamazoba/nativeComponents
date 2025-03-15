@@ -1,4 +1,4 @@
-import { View, Text, TextInput } from 'react-native';
+import { View, Text, TextInput, ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
 import { CustomView } from '../../components/ui/CustomView';
 import { Title } from '../../components/ui/Title';
 import { globalStyles } from '../../../config/theme/theme';
@@ -15,40 +15,68 @@ export const TextInputScreen = () => {
     });
 
     return (
-        <CustomView margin>
-            <Title text="Text Inputs" safe />
+        <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        >
 
-            <Card>
-                <TextInput
-                    style={globalStyles.input}
-                    placeholder="Nombre completo"
-                    autoCapitalize={'words'}
-                    autoCorrect={false}
-                    onChangeText={value => setForm({ ...form, name: value })}
-                />
+            <ScrollView>
 
-                <TextInput
-                    style={globalStyles.input}
-                    placeholder="Correo electrónico"
-                    autoCapitalize={'none'}
-                    autoCorrect={false}
-                    keyboardType="email-address"
-                    onChangeText={value => setForm({ ...form, email: value })}
-                />
+                <CustomView margin>
+                    <Title text="Text Inputs" safe />
 
-                <TextInput
-                    style={globalStyles.input}
-                    placeholder="Teléfono"
-                    keyboardType="phone-pad"
-                    onChangeText={value => setForm({ ...form, phone: value })}
-                />
-            </Card>
+                    <Card>
+                        <TextInput
+                            style={globalStyles.input}
+                            placeholder="Nombre completo"
+                            autoCapitalize={'words'}
+                            autoCorrect={false}
+                            onChangeText={value => setForm({ ...form, name: value })}
+                        />
 
-            <View style={{ height: 10 }} />
+                        <TextInput
+                            style={globalStyles.input}
+                            placeholder="Correo electrónico"
+                            autoCapitalize={'none'}
+                            autoCorrect={false}
+                            keyboardType="email-address"
+                            onChangeText={value => setForm({ ...form, email: value })}
+                        />
 
-            <Card>
-                <Text>{JSON.stringify(form, null, 2)}</Text>
-            </Card>
-        </CustomView>
+                        <TextInput
+                            style={globalStyles.input}
+                            placeholder="Teléfono"
+                            keyboardType="phone-pad"
+                            onChangeText={value => setForm({ ...form, phone: value })}
+                        />
+                    </Card>
+
+                    <View style={{ height: 10 }} />
+
+                    <Card>
+                        <Text>{JSON.stringify(form, null, 2)}</Text>
+                        <Text>{JSON.stringify(form, null, 2)}</Text>
+                        <Text>{JSON.stringify(form, null, 2)}</Text>
+                        <Text>{JSON.stringify(form, null, 2)}</Text>
+                        <Text>{JSON.stringify(form, null, 2)}</Text>
+                        <Text>{JSON.stringify(form, null, 2)}</Text>
+                        <Text>{JSON.stringify(form, null, 2)}</Text>
+                        <Text>{JSON.stringify(form, null, 2)}</Text>
+                    </Card>
+
+                    <View style={{ height: 30 }} />
+
+                    <Card>
+                        <TextInput
+                            style={globalStyles.input}
+                            placeholder="Teléfono"
+                            keyboardType="phone-pad"
+                            onChangeText={value => setForm({ ...form, phone: value })}
+                        />
+                    </Card>
+
+                    <View style={{ height: 30 }} />
+                </CustomView>
+            </ScrollView>
+        </KeyboardAvoidingView>
     );
 };
