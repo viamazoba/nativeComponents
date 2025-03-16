@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { FlatList, Image, View, ActivityIndicator } from 'react-native';
+import { FlatList, View, ActivityIndicator } from 'react-native';
 import { colors } from '../../../config/theme/theme';
+import { FadeInImage } from '../../components/ui/FadeInImage';
 
 
 
@@ -45,8 +46,8 @@ interface ListItemProps {
 const ListItem = ({ number }: ListItemProps) => {
 
     return (
-        <Image
-            source={{ uri: `https://picsum.photos/id/${number}/200/300` }}
+        <FadeInImage
+            uri={`https://picsum.photos/id/${number}/200/300`}
             style={{
                 height: 400,
                 width: '100%',
