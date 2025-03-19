@@ -1,25 +1,29 @@
-/* eslint-disable react-native/no-inline-styles */
-import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../../config/theme/theme';
+import { Animated, Easing, StyleSheet } from 'react-native';
 import { useAnimation } from '../../hooks/useAnimation';
+import { ThemeContext } from '../../context/ThemeContext';
+import { useContext } from 'react';
+import { CustomView } from '../../components/ui/CustomView';
+import { Button } from '../../components/ui/Button';
 
 
 
 export const Animation101Screen = () => {
 
     const { fadeIn, fadeOut, startMovingTopPosition, animatedOpacity, animatedTop } = useAnimation();
+    const { colors } = useContext(ThemeContext);
 
     return (
-        <View style={styles.container}>
+        <CustomView style={styles.container}>
             <Animated.View
                 style={{
                     ...styles.purpleBox,
+                    backgroundColor: colors.primary,
                     opacity: animatedOpacity,
                     transform: [{ translateY: animatedTop }],
                 }}
             />
 
-            <Pressable
+            <Button
                 onPress={() => {
                     fadeIn({});
                     startMovingTopPosition({
@@ -28,18 +32,18 @@ export const Animation101Screen = () => {
                         duration: 700,
                     });
                 }}
-                style={{ marginTop: 10 }}
-            >
-                <Text>FadeIn</Text>
-            </Pressable>
+                styles={{ marginTop: 10 }}
+                text="FadeIn"
+            />
 
-            <Pressable
+
+            <Button
                 onPress={() => fadeOut({})}
-                style={{ marginTop: 10 }}
-            >
-                <Text>FadeOut</Text>
-            </Pressable>
-        </View>
+                styles={{ marginTop: 10 }}
+                text="FadeOut"
+            />
+
+        </CustomView>
     );
 };
 
@@ -50,7 +54,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     purpleBox: {
-        backgroundColor: colors.primary,
         width: 150,
         height: 150,
     },

@@ -1,18 +1,18 @@
 import { Text } from 'react-native';
-import { colors, globalStyles } from '../../../config/theme/theme';
+import { globalStyles } from '../../../config/theme/theme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface Props {
     text?: string;
     safe?: boolean;
-    backgroundColor: string;
+    background: string;
 }
 
 
 export const SubTitle = ({
     text,
     safe = false,
-    backgroundColor = colors.background,
+    background,
 }: Props) => {
 
     const { top } = useSafeAreaInsets();
@@ -23,7 +23,7 @@ export const SubTitle = ({
                 ...globalStyles.subTitle,
                 marginTop: safe ? top : 0,
                 marginBottom: 10,
-                backgroundColor: backgroundColor,
+                backgroundColor: background,
             }}
         >
             {text}

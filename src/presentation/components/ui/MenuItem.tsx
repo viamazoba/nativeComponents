@@ -1,10 +1,10 @@
-/* eslint-disable react-native/no-inline-styles */
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../../config/theme/theme';
 import Icon from '@react-native-vector-icons/ionicons';
 import dicIcons from '../../../../node_modules/@react-native-vector-icons/ionicons/glyphmaps/Ionicons.json';
 import { useNavigation } from '@react-navigation/native';
 import { Separator } from './Separator';
+import { useContext } from 'react';
+import { ThemeContext } from '../../context/ThemeContext';
 
 export interface IMenuItem {
     name: string;
@@ -22,6 +22,7 @@ export const MenuItem = ({
     isLast,
 }: IMenuItem) => {
 
+    const { colors } = useContext(ThemeContext);
     const navigation = useNavigation<any>();
 
     return (

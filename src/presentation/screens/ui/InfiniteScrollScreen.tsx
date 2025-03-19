@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { FlatList, View, ActivityIndicator } from 'react-native';
-import { colors } from '../../../config/theme/theme';
 import { FadeInImage } from '../../components/ui/FadeInImage';
+import { ThemeContext } from '../../context/ThemeContext';
 
 
 
 export const InfiniteScrollScreen = () => {
+
+    const { colors } = useContext(ThemeContext);
 
     const [numbers, setNumbers] = useState([0, 1, 2, 3, 4, 5]);
 

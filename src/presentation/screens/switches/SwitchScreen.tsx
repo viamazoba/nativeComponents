@@ -15,7 +15,7 @@ export const SwitchScreen = () => {
     });
 
     return (
-        <CustomView style={{ marginTop: 50, paddingHorizontal: 10 }}>
+        <CustomView style={{ paddingTop: 50, paddingHorizontal: 10 }}>
             <Card>
                 <CustomSwitch
                     isOn={state.isActive}

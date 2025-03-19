@@ -11,15 +11,22 @@ import { ModalScreen } from '../screens/ui/ModalScreen';
 import { InfiniteScrollScreen } from '../screens/ui/InfiniteScrollScreen';
 import { SlidesScreen } from '../screens/ui/SlidesScreen';
 import { ChangeThemeScreen } from '../screens/theme/ChangeThemeScreen';
+import { useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
 
 
 const Stack = createStackNavigator();
 
 export const Navigator = () => {
 
+    const { colors } = useContext(ThemeContext);
+
     return (
         <Stack.Navigator screenOptions={{
             headerShown: false,
+            cardStyle: {
+                backgroundColor: colors.background, // Esto es para que en IOS se cambie el color de la isla
+            },
         }}>
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
             <Stack.Screen name="Animation101Screen" component={Animation101Screen} />
