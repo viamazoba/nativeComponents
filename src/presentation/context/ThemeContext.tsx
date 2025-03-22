@@ -1,6 +1,7 @@
 import { createContext, PropsWithChildren, useEffect, useState } from 'react';
 import { darkColors, lightColors, ThemeColors } from '../../config/theme/theme';
 import { useColorScheme } from 'react-native';
+//import { Appearance, AppState } from 'react-native';
 
 
 type ThemeColor = 'light' | 'dark';
@@ -31,6 +32,20 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
         }
 
     }, [colorScheme]);
+
+    // La siguiente manera también sirve para cambiar el theme con el sistema
+    // la diferencia es que lo hace por un listener que capta si la app está en activa o no
+
+    /*  useEffect(() => {
+         const subscription = AppState.addEventListener('change', nextAppState => {
+             const colorSchemeSystem = Appearance.getColorScheme();
+             setCurrentTheme( colorSchemeSystem === 'dark' ? 'dark' : 'light');
+         });
+
+         return () => {
+             subscription.remove();
+         };
+     }, []); */
 
     const setTheme = (theme: ThemeColor) => {
         setCurrentTheme(theme);
